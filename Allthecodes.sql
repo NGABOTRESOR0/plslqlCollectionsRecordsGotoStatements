@@ -61,3 +61,77 @@ JOIN
     products p ON s.product_id = p.product_id
 ORDER BY
     s.product_id;
+
+
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    TYPE r_inventory_item IS RECORD (
+        product_id      PLS_INTEGER,
+        stock_level     NUMBER(5),
+        unit_cost       NUMBER(10,2),
+        reorder_point   NUMBER(5),
+        item_value      NUMBER(12,2)
+    );
+
+    TYPE t_inventory_batch IS TABLE OF r_inventory_item INDEX BY PLS_INTEGER;
+
+    v_inventory t_inventory_batch;
+    v_idx       PLS_INTEGER;
+    v_emergency_threshold NUMBER(5, 2);
+
+BEGIN
+    v_inventory(1).product_id := 4001;
+    v_inventory(1).stock_level := 150;
+    v_inventory(1).unit_cost := 25.00;
+    v_inventory(1).reorder_point := 50;
+
+    v_inventory(2).product_id := 4002;
+    v_inventory(2).stock_level := 35;
+    v_inventory(2).unit_cost := 50.00;
+    v_inventory(2).reorder_point := 50;
+
+    v_inventory(3).product_id := 4003;
+    v_inventory(3).stock_level := 5;
+    v_inventory(3).unit_cost := 100.00;
+    v_inventory(3).reorder_point := 10; 
+
+    v_inventory(4).product_id := 4004;
+    v_inventory(4).stock_level := 200;
+    v_inventory(4).unit_cost := 10.00;
+    v_inventory(4).reorder_point := 50;
+
+    DBMS_OUTPUT.PUT_LINE('--- Starting Inventory Valuation and Check ---');
+
+    v_idx := v_inventory.FIRST;
+
+    WHILE v_idx IS NOT NULL LOOP
+        v_inventory(v_idx).item_value := v_inventory(v_idx).stock_level * v_inventory(v_idx).unit_cost;
+        
+        DBMS_OUTPUT.PUT_LINE('Processing Product: ' || v_inventory(v_idx).product_id || 
+                             ' | Stock: ' || v_inventory(v_idx).stock_level || 
+                             ' | Value: ' || v_inventory(v_idx).item_value);
+
+        v_emergency_threshold := v_inventory(v_idx).reorder_point * 0.5;
+        
+        IF v_inventory(v_idx).stock_level <= v_emergency_threshold THEN
+            DBMS_OUTPUT.PUT_LINE('!! EMERGENCY ALERT: Stock (' || v_inventory(v_idx).stock_level || 
+                                 ') below 50% threshold (' || v_emergency_threshold || ').');
+            
+            GOTO emergency_procurement;
+        END IF;
+
+        v_idx := v_inventory.NEXT(v_idx);
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('--- Batch Processing Complete Successfully ---');
+    RETURN;
+
+    <<emergency_procurement>>
+    DBMS_OUTPUT.PUT_LINE('-------------------------------------------');
+    DBMS_OUTPUT.PUT_LINE('<<EMERGENCY_PROCUREMENT>> Routine Initiated.');
+    DBMS_OUTPUT.PUT_LINE('Action: Stop current process, send urgent PO for Product ' || v_inventory(v_idx).product_id);
+    
+END;
+/
