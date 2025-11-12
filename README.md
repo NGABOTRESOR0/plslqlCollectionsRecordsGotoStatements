@@ -35,3 +35,23 @@ Inventory_Stock holds the real-time, current stock levels that the PL/SQL proces
 Audit_Log acts as the crucial transaction history, recording when the emergency GOTO routine is triggered.
 
 This structure ensures data integrity, provides the necessary data input for the Collections and Records processing, and validates the execution of the critical GOTO control flow logic.
+# Screenshots
+
+The Creation of Tables.
+
+<img width="559" height="411" alt="table creation" src="https://github.com/user-attachments/assets/616b876d-ebf3-436b-86aa-6a6bec2c6dbd" />
+
+The Insertion of Rows.
+
+<img width="856" height="341" alt="data insertion 1" src="https://github.com/user-attachments/assets/5f4eefd4-f9ab-487c-8f70-8da5746f6a04" />
+<img width="715" height="207" alt="data insertion" src="https://github.com/user-attachments/assets/905672e7-4805-4645-b4c0-0b34ecf39fff" />
+
+
+The Output of Data.
+
+<img width="510" height="428" alt="Capture1" src="https://github.com/user-attachments/assets/ec30c782-0103-4535-84d8-1c2123cc9834" />
+<img width="504" height="468" alt="Capture" src="https://github.com/user-attachments/assets/7baabb97-5aaf-4c0c-a229-cbc2abaae2c0" />
+
+
+
+
