@@ -52,6 +52,11 @@ The Output of Data.
 <img width="510" height="428" alt="Capture1" src="https://github.com/user-attachments/assets/ec30c782-0103-4535-84d8-1c2123cc9834" />
 <img width="504" height="468" alt="Capture" src="https://github.com/user-attachments/assets/7baabb97-5aaf-4c0c-a229-cbc2abaae2c0" />
 
+# Conclusion
+Record: The r_inventory_item Record was used to define a single, complex product structure (Stock, Cost, Reorder Point), ensuring accurate value calculation during processing.
 
+Collection: The t_inventory_batch Collection (Index-by Table) efficiently stored and allowed for the quick, iterative checking of all inventory records in memory.
+
+GOTO Statement: The GOTO statement was critical for enforcing Emergency Priority. When a critical stock shortage was detected, it immediately halted the normal routine and redirected control to the Procurement Routine, skipping unnecessary subsequent checks.
 
 
