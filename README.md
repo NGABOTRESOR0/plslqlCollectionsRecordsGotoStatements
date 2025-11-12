@@ -52,6 +52,21 @@ The Output of Data.
 <img width="510" height="428" alt="Capture1" src="https://github.com/user-attachments/assets/ec30c782-0103-4535-84d8-1c2123cc9834" />
 <img width="504" height="468" alt="Capture" src="https://github.com/user-attachments/assets/7baabb97-5aaf-4c0c-a229-cbc2abaae2c0" />
 
+
+The Functionality and Efficiency of The procedure.
+
+
+
+
+<img width="385" height="175" alt="result" src="https://github.com/user-attachments/assets/8a6c723d-cfe8-4f2d-883e-b1768f6433eb" />
+<img width="446" height="190" alt="result1" src="https://github.com/user-attachments/assets/341fb834-16c1-4397-956d-3ac7e9d8ea7e" />
+
+
+
+
+The procedure is highly efficient because its main function is to enforce immediate action on critical shortages.
+
+It uses a Collection of Records for batch processing. The moment Product 4003 is checked and found critically low, the GOTO statement interrupts the routine. This instantly skips any remaining non-critical work and logs the emergency to the database, ensuring the fastest possible response time for the supply chain issue
 # Conclusion
 Record: The r_inventory_item Record was used to define a single, complex product structure (Stock, Cost, Reorder Point), ensuring accurate value calculation during processing.
 
